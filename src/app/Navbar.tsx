@@ -3,7 +3,12 @@
 import { Group } from "@mui/icons-material";
 import { AppBar, Box, Button, MenuItem, Toolbar, Typography } from "@mui/material";
 
-export default function Navbar() {
+type props={
+  openForm:()=>void
+}
+
+
+export default function Navbar({openForm}:props) {
   return (
      <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static"  sx={{
@@ -24,13 +29,12 @@ export default function Navbar() {
                 Activities
             </MenuItem>
             <MenuItem sx={{fontWeight:'bold'}}>
-                Activities
-            </MenuItem>
+                Contact            </MenuItem>
             <MenuItem sx={{fontWeight:'bold'}}>
                 Activities
             </MenuItem>
           </Box>
-          <Button size="large" variant="contained" color="warning">Create Activity</Button>
+          <Button onClick={()=>openForm()} size="large" variant="contained" color="warning">Create Activity</Button>
         </Toolbar>
       </AppBar>
     </Box>

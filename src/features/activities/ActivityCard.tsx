@@ -4,11 +4,12 @@ import { Button, Card, CardActions, CardContent, Chip, Typography } from "@mui/m
 
 type Prop={
     activity:IActivity,
-    selectActivity:(id:string)=>void
+    selectActivity:(id:string)=>void,
+    handleCloseForm:()=>void
 }
 
 
-export default function ActivityCard({activity,selectActivity}:Prop) {
+export default function ActivityCard({activity,selectActivity,handleCloseForm}:Prop) {
 
 
 
@@ -22,7 +23,7 @@ export default function ActivityCard({activity,selectActivity}:Prop) {
         </CardContent>
         <CardActions sx={{display:'flex',justifyContent:'space-between'}}>
             <Chip label={activity.category} variant="outlined"/>
-            <Button onClick={() => selectActivity(activity.id)}  size="medium" variant="contained">View</Button>
+            <Button onClick={() => { selectActivity(activity.id);handleCloseForm()}}  size="medium" variant="contained">View</Button>
         </CardActions>
     </Card>
   )

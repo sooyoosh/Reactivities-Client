@@ -5,15 +5,19 @@ import ActivityCard from "../ActivityCard"
 
 type Prop={
     activity:IActivity[],
-    selectActivity:(id:string)=>void
+    selectActivity:(id:string)=>void,
+    handleCloseForm:()=>void
 }
-export default function ActivityList({activity,selectActivity}:Prop) {
+export default function ActivityList({activity,selectActivity,handleCloseForm}:Prop) {
 
 
   return (
     <Box sx={{display:'flex',flexDirection:'column',gap:3}}>
         {activity.map(act=>(
-            <ActivityCard key={act.id} activity={act} selectActivity={selectActivity}/>
+            <ActivityCard key={act.id} activity={act} 
+            selectActivity={selectActivity}
+            handleCloseForm={handleCloseForm}
+            />
         ))}
     </Box>
   )

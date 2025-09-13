@@ -3,9 +3,10 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@
 //import React from 'react'
 type Prop = {
     activity: IActivity,
-    cancelselectActivity:()=>void
+    cancelselectActivity:()=>void,
+    handleOpenForm:(id:string)=>void
 }
-export default function ActivityDetail({ activity,cancelselectActivity }: Prop) {
+export default function ActivityDetail({ activity,cancelselectActivity,handleOpenForm }: Prop) {
 
     return (
         <Card sx={{ borderRadius: '10px' }}>
@@ -21,7 +22,7 @@ export default function ActivityDetail({ activity,cancelselectActivity }: Prop) 
                 <Typography variant="h5">{activity.city}/{activity.venue}</Typography>
             </CardContent>
             <CardActions>
-                <Button color="primary">Edit</Button>
+                <Button color="primary" onClick={()=>handleOpenForm(activity.id)}>Edit</Button>
                 <Button onClick={cancelselectActivity} color="inherit">Cancle</Button>
             </CardActions>
         </Card>

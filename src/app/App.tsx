@@ -9,6 +9,7 @@ function App() {
 
   const [activities,setActivities]=useState<IActivity[]>([]);
   const [selectedActivity,setSelectedActivity]=useState<IActivity|undefined>(undefined);
+  const [editMode,seteditMode]=useState<boolean>(false);
 
 
   useEffect(()=>{
@@ -27,14 +28,29 @@ const handleCancelActivity=()=>{
   setSelectedActivity(undefined);
 }
 
+const handleOpenForm=(id?:string)=>{
+  if(id) handleSelectActivity(id);
+  else handleCancelActivity();
+  seteditMode(true);
+}
+
+
+const handleCloseForm=()=>{
+  seteditMode(false);
+}
+
+
 
   return (
     <Box sx={{bgcolor:'#eeeeee'}}>
       <CssBaseline/>
-      <Navbar/>
+      <Navbar openForm={handleOpenForm}/>
       {/* <Typography variant="h1">React</Typography> */}
       <Container sx={{mt:3}}>
-      <ActivityDashboard 
+      <ActivityDashboard
+      handleOpenForm={handleOpenForm}
+      handleCloseForm={handleCloseForm} 
+      editMode={editMode}
       activities={activities}
       selectActivity={handleSelectActivity}
       cancelselectActivity={handleCancelActivity}
