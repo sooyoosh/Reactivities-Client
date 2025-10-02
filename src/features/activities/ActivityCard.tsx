@@ -1,16 +1,21 @@
 //import React from 'react'
 
-import { Button, Card, CardActions, CardContent, Chip, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, Chip, Typography } from "@mui/material";
+
 
 type Prop={
     activity:IActivity,
     selectActivity:(id:string)=>void,
-    handleCloseForm:()=>void
+    handleCloseForm:()=>void,
+    handledelete:(id:string)=>void
 }
 
 
-export default function ActivityCard({activity,selectActivity,handleCloseForm}:Prop) {
+export default function ActivityCard({activity,selectActivity,handleCloseForm
+  ,handledelete
+}:Prop) {
 
+  
 
 
   return (
@@ -23,7 +28,10 @@ export default function ActivityCard({activity,selectActivity,handleCloseForm}:P
         </CardContent>
         <CardActions sx={{display:'flex',justifyContent:'space-between'}}>
             <Chip label={activity.category} variant="outlined"/>
-            <Button onClick={() => { selectActivity(activity.id);handleCloseForm()}}  size="medium" variant="contained">View</Button>
+            <Box sx={{display:'flex',gap:2}}>
+            <Button onClick={() => { handledelete(activity.id)}}  size="medium" color="error" variant="contained">Delete</Button>
+            <Button onClick={() => { selectActivity(activity.id);handleCloseForm()}}   size="medium" variant="contained">View</Button>  
+            </Box>
         </CardActions>
     </Card>
   )

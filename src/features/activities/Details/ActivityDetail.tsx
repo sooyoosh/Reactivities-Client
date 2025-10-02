@@ -1,12 +1,18 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
+import { useActivities } from "../../../lib/hooks/useActivities"
 
 //import React from 'react'
 type Prop = {
-    activity: IActivity,
+    selectactivity: IActivity,
     cancelselectActivity:()=>void,
     handleOpenForm:(id:string)=>void
 }
-export default function ActivityDetail({ activity,cancelselectActivity,handleOpenForm }: Prop) {
+export default function ActivityDetail({ selectactivity,cancelselectActivity,handleOpenForm }: Prop) {
+
+    const {activities}=useActivities();
+    const activity=activities?.find(x=>x.id===selectactivity.id);
+
+    if(!activity) return <Typography variant="h5">...there is no activity</Typography>
 
     return (
         <Card sx={{ borderRadius: '10px' }}>
